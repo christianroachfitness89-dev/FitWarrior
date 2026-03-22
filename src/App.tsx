@@ -28,7 +28,15 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className="min-h-screen text-white" style={{ background: '#09090f' }}>
+      {/* Ambient top glow */}
+      <div
+        className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-lg h-64 pointer-events-none z-0"
+        style={{
+          background: 'radial-gradient(ellipse 80% 100% at 50% -20%, rgba(109,40,217,0.18) 0%, transparent 70%)',
+        }}
+      />
+
       {/* Global toast notifications */}
       <XPToast
         notifications={notifications}
@@ -37,20 +45,39 @@ export default function App() {
       />
 
       {/* Header */}
-      <header className="sticky top-0 z-30 bg-slate-900/95 backdrop-blur border-b border-slate-800">
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-xl">⚔️</span>
-            <span className="font-bold text-purple-400">FitWarrior</span>
+      <header
+        className="sticky top-0 z-30 backdrop-blur-xl"
+        style={{
+          background: 'rgba(9,9,15,0.80)',
+          borderBottom: '1px solid rgba(255,255,255,0.07)',
+        }}
+      >
+        <div className="max-w-lg mx-auto px-4 py-3.5 flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div
+              className="w-7 h-7 rounded-lg flex items-center justify-center text-sm"
+              style={{
+                background: 'rgba(109,40,217,0.25)',
+                border: '1px solid rgba(139,92,246,0.35)',
+              }}
+            >
+              ⚔️
+            </div>
+            <span className="font-bold text-sm tracking-wide text-gradient-violet">
+              FitWarrior
+            </span>
           </div>
-          <div className="text-sm text-slate-400">
+          <div
+            className="text-xs text-slate-400 px-3 py-1 rounded-full font-medium"
+            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}
+          >
             {state.character.name}
           </div>
         </div>
       </header>
 
       {/* Main content */}
-      <main className="max-w-lg mx-auto px-4 pt-4 pb-24">
+      <main className="relative z-10 max-w-lg mx-auto px-4 pt-4 pb-24">
         {tab === 'dashboard' && (
           <Dashboard
             state={state}
